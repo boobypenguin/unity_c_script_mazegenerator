@@ -53,6 +53,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CubePlayableAsset.cs" />
+     <Compile Include="Assets\CubePlayableBehaviour.cs" />
      <Compile Include="Assets\myscript.cs" />
      <Compile Include="Assets\rigidscript.cs" />
      <None Include="Assets\QS\QS-Textures-Grass-FREE.txt" />
