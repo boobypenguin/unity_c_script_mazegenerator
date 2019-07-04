@@ -55,6 +55,8 @@
   <ItemGroup>
      <Compile Include="Assets\myscript.cs" />
      <Compile Include="Assets\rigidscript.cs" />
+     <None Include="Assets\QS\QS-Textures-Grass-FREE.txt" />
+     <None Include="Assets\QS\ComposerUI.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/programming/Unity_sample/unity_c_script_mazegenerator/MazeGeneratorProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

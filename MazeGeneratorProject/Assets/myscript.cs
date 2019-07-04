@@ -1,53 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class myscript : MonoBehaviour
 {
-    Vector3 stdSize;
-    Vector3 smlSize;
-    RaycastHit hit;
-    int counter = 0;
-    bool flg = false;
+    Renderer renderer;
+    Texture texture1;
+    Color color1;
+    float size = 1.0f;
 
     void Start()
     {
-        stdSize = new Vector3(1f, 1f, 1f);
-        smlSize = new Vector3(0.5f, 0.5f, 0.5f);
+        renderer = GetComponent<Renderer>();
+        texture1 = (Texture)Resources.Load("QS-Grass2-Pack-6.1");
+        color1 = renderer.material.color;
+        renderer.material.mainTexture = texture1;
+        renderer.material.color = Color.white;
     }
 
     void Update()
     {
-        if (flg)
+        transform.Rotate(1f, 1f, 0.1f);
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
-            if (counter <= 0)
-            {
-                hit.transform.localScale = stdSize;
-                flg = false;
-            }
-            else
-            {
-                counter--;
-            }
+            size += 0.01f;
+            renderer.material.mainTextureScale =
+                    new Vector2(size, size);
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
-            Vector3 pos = Input.mousePosition;
-            pos.z = 3.0f;
-            Ray ray = Camera.main.ScreenPointToRay(pos);
-            if (!flg)
-            {
-                if (Physics.Raycast(ray, out hit, 100))
-                {
-                    hit.transform.localScale = smlSize;
-                    counter = 100;
-                    flg = true;
-                }
-                else
-                {
-                    Vector3 newpos = Camera.main.ScreenToWorldPoint(pos);
-                    transform.position = newpos;
-                }
-            }
+            size -= 0.01f;
+            if (size < 0) { size = 0f; }
+            renderer.material.SetTextureScale("_MainTex",
+                    new Vector2(size, size));
         }
     }
 }
